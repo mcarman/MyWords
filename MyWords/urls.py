@@ -1,4 +1,4 @@
-# urls
+# mywords.urls
 
 from django.conf.urls import patterns, include, url
 
@@ -13,5 +13,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     # blog URLs
-    url(r'^.*$', include('blogengine.urls'))
+    url(r'', include('blogengine.urls'))
 )
