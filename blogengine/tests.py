@@ -18,6 +18,7 @@ class PostTest(TestCase):
         # Add attributes
         category.name = 'python'
         category.description = 'The Python programming language'
+        category.slug = 'python'
 
         # Save it
         category.save()
@@ -30,7 +31,9 @@ class PostTest(TestCase):
 
         # Check attributes
         self.assertEquals(only_category.name, 'python')
-        self.assertEquals(only_category.description, 'The Python programming language')
+        self.assertEquals(only_category.description,
+                          'The Python programming language')
+        self.assertEquals(only_category.slug, 'python')
 
     def test_create_tag(self):
         # Create the tag
@@ -39,6 +42,7 @@ class PostTest(TestCase):
         # Add attributes
         tag.name = 'python'
         tag.description = 'The Python programming language'
+        tag.slug = 'python'
 
         # Save it
         tag.save()
@@ -51,7 +55,9 @@ class PostTest(TestCase):
 
         # Check attributes
         self.assertEquals(only_tag.name, 'python')
-        self.assertEquals(only_tag.description, 'The Python programming language')
+        self.assertEquals(only_tag.description,
+                          'The Python programming language')
+        self.assertEquals(only_tag.slug, 'python')
 
     def test_create_post(self):
         # Create the category
@@ -67,7 +73,9 @@ class PostTest(TestCase):
         tag.save()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
+        author = User.objects.create_user('testuser',
+                                          'user@example.com',
+                                          'password')
         author.save()
 
         # Create the site
@@ -116,7 +124,8 @@ class PostTest(TestCase):
         self.assertEquals(only_post.author.username, 'testuser')
         self.assertEquals(only_post.author.email, 'user@example.com')
         self.assertEquals(only_post.category.name, 'python')
-        self.assertEquals(only_post.category.description, 'The Python programming language')
+        self.assertEquals(only_post.category.description,
+                          'The Python programming language')
 
         # Check tags
         post_tags = only_post.tags.all()
@@ -124,7 +133,8 @@ class PostTest(TestCase):
         only_post_tag = post_tags[0]
         self.assertEquals(only_post_tag, tag)
         self.assertEquals(only_post_tag.name, 'python')
-        self.assertEquals(only_post_tag.description, 'The Python programming language')
+        self.assertEquals(only_post_tag.description,
+                          'The Python programming language')
 
 
 class BaseAcceptanceTest(LiveServerTestCase):
@@ -227,7 +237,8 @@ class AdminTest(BaseAcceptanceTest):
         self.assertEquals(len(all_categories), 1)
         only_category = all_categories[0]
         self.assertEquals(only_category.name, 'perl')
-        self.assertEquals(only_category.description, 'The Perl programming language')
+        self.assertEquals(only_category.description,
+                          'The Perl programming language')
 
     def test_delete_category(self):
         # Create the category
@@ -431,7 +442,9 @@ class PostViewTest(BaseAcceptanceTest):
         tag.save()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
+        author = User.objects.create_user('testuser',
+                                          'user@example.com',
+                                          'password')
         author.save()
 
         # Create the site
@@ -495,7 +508,9 @@ class PostViewTest(BaseAcceptanceTest):
         tag.save()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
+        author = User.objects.create_user('testuser',
+                                          'user@example.com',
+                                          'password')
         author.save()
 
         # Create the site
@@ -559,7 +574,9 @@ class PostViewTest(BaseAcceptanceTest):
         category.save()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
+        author = User.objects.create_user('testuser',
+                                          'user@example.com',
+                                          'password')
         author.save()
 
         # Create the site
@@ -614,7 +631,9 @@ class PostViewTest(BaseAcceptanceTest):
         tag.save()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
+        author = User.objects.create_user('testuser',
+                                          'user@example.com',
+                                          'password')
         author.save()
 
         # Create the site
